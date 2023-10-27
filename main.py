@@ -1,6 +1,6 @@
 # Cohere API: https://docs.cohere.com/reference/classify
 
-from sheets import obtain_data
+from data import obtain_data
 from secret import API_KEY
 
 import cohere
@@ -38,7 +38,7 @@ examples=[
 ]
 
 # Obtain our inputs from Google Sheets
-inputs = obtain_data()
+inputs1 = obtain_data()
 
 # OR manually list out our inputs
 inputs2=[
@@ -47,22 +47,26 @@ inputs2=[
     "The product was not too bad"
 ]
 
-# Note: return type of co.classify() is a Classifications object
-# src: https://github.com/cohere-ai/cohere-python/blob/main/cohere/client.py
-# Classifications reference: https://github.com/cohere-ai/cohere-python/blob/main/cohere/responses/classify.py
-response = co.classify(
-    inputs=inputs2,
-    examples=examples,
-)
+def print_classifications(input):
+    # Note: return type of co.classify() is a Classifications object
+    # src: https://github.com/cohere-ai/cohere-python/blob/main/cohere/client.py
+    # Classifications reference: https://github.com/cohere-ai/cohere-python/blob/main/cohere/responses/classify.py
+    response = co.classify(
+        inputs=input,
+        examples=examples,
+    )
 
-# Get the counts for each classification
-counts = [0] * len(CLASSIFICATIONS)
-for classification in response:
+    # Get the counts for each classification
+    counts = [0] * len(CLASSIFICATIONS)
+    for classification in response:
+        for i in range(len(CLASSIFICATIONS)):
+            label = CLASSIFICATIONS[i]
+            if classification.predictions[0] == label:
+                counts[i] += 1
+
+    # For each classifcation, print the percentage
     for i in range(len(CLASSIFICATIONS)):
-        label = CLASSIFICATIONS[i]
-        if classification.predictions[0] == label:
-            counts[i] += 1
+        print("%s: %f" % (CLASSIFICATIONS[i], counts[i]/len(counts)))
 
-# For each classifcation, print the percentage
-for i in range(len(CLASSIFICATIONS)):
-    print("%s: %f" % (CLASSIFICATIONS[i], counts[i]/len(counts)))
+if __name__ == "__main__":
+    print_classifications(inputs2)

@@ -55,14 +55,15 @@ def obtain_data():
             print('No data found.')
             return
 
-        print('UT EIDs:')
+        # print('UT EIDs:')
         for row in values:
             # Print column B and C, which corresponds to the respondee's
             # first and last names
             # print('%s %s' % (row[1], row[2]))
-            current_line = '%s %s (%s)' % (row[1], row[2], row[3])
+            # current_line = '%s %s (%s)' % (row[1], row[2], row[3])
             # Feedback = row[7]
-            print(current_line)
+            # print(current_line)
+            
             items.append(row[7])
         
     except HttpError as err:
