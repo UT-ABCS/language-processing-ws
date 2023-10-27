@@ -1,9 +1,12 @@
 # language-processing-ws
 Using Cohere to analyze feedback from responses to a Google Form
 
+<!-- 
+https://developer.apple.com/forums/thread/673827
+Run xcode-select --install if you're getting this error while installing Cohere
+(note that fastavro is one of the required packages for Cohere):
 
-# For this error:
-<!-- kdunc@Kylans-MacBook-Pro language-processing-ws % python3.10 -m pip install fastavro
+kdunc@Kylans-MacBook-Pro language-processing-ws % python3.10 -m pip install fastavro
 Collecting fastavro
   Downloading fastavro-1.8.4.tar.gz (971 kB)
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 971.4/971.4 kB 6.8 MB/s eta 0:00:00
@@ -73,6 +76,5 @@ Building wheels for collected packages: fastavro
   note: This error originates from a subprocess, and is likely not a problem with pip.
   ERROR: Failed building wheel for fastavro
 Failed to build fastavro
-ERROR: Could not build wheels for fastavro, which is required to install pyproject.toml-based projects -->
-# Run xcode-select --install
-# https://developer.apple.com/forums/thread/673827
+ERROR: Could not build wheels for fastavro, which is required to install pyproject.toml-based projects 
+-->
